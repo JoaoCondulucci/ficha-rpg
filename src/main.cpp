@@ -10,14 +10,15 @@ int main() {
   personagem.estiloAuria = 3;
   personagem.nivel = 1;
 
-  personagem.FOR = 4;
-  personagem.DES = 12;
-  personagem.CON = 23;
-  personagem.INT = 18;
-  personagem.CAR = 2;
-  personagem.AUR = 9;
+  personagem.FOR = 0;
+  personagem.DES = 0;
+  personagem.CON = 0;
+  personagem.INT = 0;
+  personagem.CAR = 0;
+  personagem.AUR = 0;
 
   personagem.PV = 89;
+  personagem.PVATUAL = personagem.PV;
   personagem.AP = 123;
   personagem.CA = 239;
 
@@ -44,10 +45,16 @@ int main() {
   cout << endl;
 
   cout << "-------------------------- STATUS -------------------------" << endl;
-  cout << "FOR: " << personagem.FOR << " || " << "DES: " << personagem.DES << " || " << "CON: " << personagem.CON
-  << " || " << "INT: " << personagem.INT << " || " << "CAR: " << personagem.CAR << " || " << "AUR: " << personagem.AUR << endl;
+  cout << 
+  "FOR: " << personagem.FOR << "(" << personagem.statusMods(personagem.FOR) << ") || " << 
+  "DES: " << personagem.DES << "(" << personagem.statusMods(personagem.DES) << ") || " << 
+  "CON: " << personagem.CON << "(" << personagem.statusMods(personagem.CON) << ") || " << 
+  "INT: " << personagem.INT << "(" << personagem.statusMods(personagem.INT) << ") || " << 
+  "CAR: " << personagem.CAR << "(" << personagem.statusMods(personagem.CAR) << ") || " << 
+  "AUR: " << personagem.AUR << "(" << personagem.statusMods(personagem.AUR) << ")" << endl;
   cout << endl;
-  cout << "PV: " << personagem.PV << endl;
+  cout << "PV MAX: " << personagem.PV << endl;
+  cout << "PV ATUAL: " << personagem.PVATUAL << endl;
   cout << "AP: " << personagem.AP << endl;
   cout << "CA: " << personagem.CA << endl;
   cout << "Iniciativa: " << personagem.Iniciativa << endl;
