@@ -132,25 +132,25 @@ struct ficha
     } else if (Modificador < 12) {
       return 0;
     } else if (Modificador < 14) {
-      return +1;
+      return 1;
     } else if (Modificador < 16) {
-      return +2;
+      return 2;
     } else if (Modificador < 18) {
-      return +3;
+      return 3;
     } else if (Modificador < 20) {
-      return +4;
+      return 4;
     } else if (Modificador < 22) {
-      return +5;
+      return 5;
     } else if (Modificador < 24) {
-      return +6;
+      return 6;
     } else if (Modificador < 26) {
-      return +7;
+      return 7;
     } else if (Modificador < 28) {
-      return +8;
+      return 8;
     } else if (Modificador < 30) {
-      return +9;
+      return 9;
     } else if (Modificador = 30) {
-      return +10;
+      return 10;
     } else {
       return 00000;
     }
@@ -164,7 +164,22 @@ struct ficha
       PVATUAL = PVATUAL + CURA;
   }
 
-  
+  void CalcAP( ) {
+      AP = 0;
+      AP = 10 + (statusMods(AUR) * 2);
+  }
+
+  void CalcCA( ) {
+      CA = 0;
+      CA = 10 + statusMods(DES) /*+ Armadura*/;
+  }  
+
+  void CalcIniciativa( ) {
+      Iniciativa = 0;
+      Iniciativa = statusMods(DES);
+  }
+
+
 };
 
 

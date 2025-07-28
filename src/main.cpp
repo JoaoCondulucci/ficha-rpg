@@ -15,14 +15,14 @@ int main() {
   personagem.CON = 0;
   personagem.INT = 0;
   personagem.CAR = 0;
-  personagem.AUR = 0;
+  personagem.AUR = 15;
 
   personagem.PV = 89;
   personagem.PVATUAL = personagem.PV;
-  personagem.AP = 123;
-  personagem.CA = 239;
+  personagem.CalcAP();
+  personagem.CalcCA();
 
-  personagem.Iniciativa = 2930;
+ personagem.CalcIniciativa();
 
   personagem.pericias = {103, 104, 108} ;
 /*   int Perícia1;
