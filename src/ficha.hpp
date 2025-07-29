@@ -5,9 +5,11 @@
 
 #include <string> //Biblioteca para strings
 #include <vector> //Biblioteca para vetores
+#include <array>
+#include <iostream>
 
 struct ficha
-{
+{ 
   std::string nome;
   int raca;
   int arquetipo;
@@ -29,7 +31,10 @@ struct ficha
 
   int Iniciativa;
 
-  std::vector<int> pericias;
+  int pericias[3];
+  std::vector<std::string> ListaPericias;
+
+  
 /*   int Perícia1;
   int Perícia2;
   int Perícia3;
@@ -37,7 +42,9 @@ struct ficha
   int Perícia5; */
 
   std::vector<std::string> inventario;
+  int QuantidadeItens;
   std::vector<int> tecnicas;
+  std::vector<std::string> tecnicasNomes;
   std::vector<std::string> tecnicasdespertar;
 
 
@@ -119,41 +126,7 @@ struct ficha
   }
 
   int statusMods(int Modificador) const {
-    if (Modificador < 1) {
-      return -5;
-    } else if (Modificador > 1 && Modificador < 4 ) {
-      return -4;
-    } else if (Modificador < 6) {
-      return -3;
-    } else if (Modificador < 8) {
-      return -2;
-    } else if (Modificador < 10) {
-      return -1;
-    } else if (Modificador < 12) {
-      return 0;
-    } else if (Modificador < 14) {
-      return 1;
-    } else if (Modificador < 16) {
-      return 2;
-    } else if (Modificador < 18) {
-      return 3;
-    } else if (Modificador < 20) {
-      return 4;
-    } else if (Modificador < 22) {
-      return 5;
-    } else if (Modificador < 24) {
-      return 6;
-    } else if (Modificador < 26) {
-      return 7;
-    } else if (Modificador < 28) {
-      return 8;
-    } else if (Modificador < 30) {
-      return 9;
-    } else if (Modificador = 30) {
-      return 10;
-    } else {
-      return 00000;
-    }
+    return (Modificador / 2 - 5);
   }
 
   void CalcVidaDano(int DANO) {
@@ -179,10 +152,91 @@ struct ficha
       Iniciativa = statusMods(DES);
   }
 
+  std::string NomePericia(int NumPericia) {
+      ListaPericias = {"Atletismo","Brutalidade","Luta Desarmada","Acrobacia","Furtividade","Pontaria","Reflexos","Resistencia Fisica","Sobrevivencia","Fortitude","Conhecimento","Investigacao","Tecnologia","Ciencia","Persuasao","Intimidacao","Atuacao","Lideranca","Canalizacao","Projecao","Refinamento","Manipulacao","Deteccao Aurica"};
+      return ListaPericias[NumPericia];
+}; 
+  int ModPericia (int NumPericia) const {
+    if (NumPericia >= 0 && NumPericia < 3) {
+      return statusMods(FOR);
+    } else if (NumPericia < 6) {
+      return statusMods(DES) + 2;
+    } else if (NumPericia < 9) {
+      return statusMods(CON) + 2;
+    } else if (NumPericia < 13) {
+      return statusMods(INT) + 2;
+    } else if (NumPericia < 16) {
+      return statusMods(CAR) + 2;
+    } else if (NumPericia < 20) {
+      return statusMods(AUR) + 2;
+    } else {
+      return 333333;
+    }; 
+  }
 
+  void TecnicasArquetipos() {
+    switch (arquetipo)
+    {
+    case 1:
+      if (nivel == 1) {
+        tecnicasNomes = {"Mestre de armas"};
+      } else if (nivel == 3) {
+        tecnicasNomes = {"Mestre de armas", "Combo rapido"};
+      } else if (nivel == 5) {
+        tecnicasNomes = {"Mestre de armas", "Combo rapido", "Troca tatica"};
+      } else if (nivel == 7) {
+        tecnicasNomes = {"Mestre de armas", "Combo rapido", "Troca tatica", "Estilo adaptavel"};
+      } else if (nivel == 10) {
+        tecnicasNomes = {"Mestre de armas", "Combo rapido", "Troca tatica", "Estilo adaptavel", ""};
+      }
+      break;
+    case 2:
+      if (nivel == 1) {
+        tecnicasNomes = {"Molde inicial"};
+      } else if (nivel == 3) {
+        tecnicasNomes = {"Molde inicial", "Armadura condensada"};
+      } else if (nivel == 5) {
+        tecnicasNomes = {"Molde inicial", "Armadura condensada", "Construcao persistente"};
+      } else if (nivel == 7) {
+        tecnicasNomes = {"Molde inicial", "Armadura condensada", "Construcao persistente", "Barreira reflexiva"};
+      } else if (nivel == 10) {
+        tecnicasNomes = {"Molde inicial", "Armadura condensada", "Construcao persistente", "Barreira reflexiva", "Criacao suprema"};
+      }      
+      break;
+    case 3:
+      if (nivel == 1) {
+        tecnicasNomes = {"Descarga mistica"};
+      } else if (nivel == 3) {
+        tecnicasNomes = {"Descarga mistica", "Amplificar tecnica"};
+      } else if (nivel == 5) {
+        tecnicasNomes = {"Descarga mistica", "Amplificar tecnica", " Estouro de zona"};
+      } else if (nivel == 7) {
+        tecnicasNomes = {"Descarga mistica", "Amplificar tecnica", " Estouro de zona", "Auria expandida"};
+      } else if (nivel == 10) {
+        tecnicasNomes = {"Descarga mistica", "Amplificar tecnica", "Estouro de zona", "Auria expandida", "Tempestade final"};
+      }
+      break;
+    case 4:
+      if (nivel == 1) {
+        tecnicasNomes = {"Corpo Reforçado"};
+      } else if (nivel == 3) {
+        tecnicasNomes = {"Corpo Reforçado", "Impacto potente"};
+      } else if (nivel == 5) {
+        tecnicasNomes = {"Corpo Reforçado", "Impacto potente", "Canalizar Dor"};
+      } else if (nivel == 7) {
+        tecnicasNomes = {"Corpo Reforçado", "Impacto potente", "Canalizar Dor", "Auria ativa"};
+      } else if (nivel == 10) {
+        tecnicasNomes = {"Corpo Reforçado", "Impacto potente", "Canalizar Dor", "Auria Ativa", "Explosão Interna"};
+      }
+      break;
+
+    
+    default:
+      tecnicasNomes = {"Não encontrado"};
+      break;
+    }
+  }
 };
-
-
 
 
 
