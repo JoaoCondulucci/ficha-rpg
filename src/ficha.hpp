@@ -130,11 +130,17 @@ struct ficha
     return (Modificador / 2 - 5);
   }
 
-  void CalcVidaDano(int DANO) {
+  void CalcVidaDano() {
+    int DANO;
+      std::cout << "Quanto de dano você recebeu?" << std::endl;
+      std::cin >> DANO;
       PVATUAL = PVATUAL - DANO ;
   }
 
-  void CalcVidaCura(int CURA) {
+  void CalcVidaCura() {
+    int CURA;
+      std::cout << "Quanto você curou" << std::endl;
+      std::cin >> CURA;
       PVATUAL = PVATUAL + CURA;
   }
 

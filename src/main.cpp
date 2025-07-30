@@ -146,10 +146,13 @@ int main() {
   
     break;
   case 6: // Cura
-  
+  personagem.CalcVidaCura();
+  displayFicha();
     break;
   case 7:
-    beak: // Dano
+  personagem.CalcVidaDano();
+  displayFicha();
+    break; // Dano
   default:
     break;
   }
