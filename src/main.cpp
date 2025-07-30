@@ -4,6 +4,7 @@
 #include <vector> //Biblioteca para vetores
 #include <array>
 #include <cstdlib> 
+#include <fstream>
 
 
 
@@ -56,14 +57,16 @@ void criacaodeFicha () {
     cout << "Quais as suas pericias?" << endl;
     cin >> personagem.pericias[i];
   }
-
-
-  personagem.inventario = {""};
-  personagem.tecnicas = {};
+  personagem.InserirItens();
   personagem.tecnicasdespertar = {""};
 }
 
 void displayFicha() {
+  #ifdef _WIN32
+  system("cls"); // Para Windows
+  #else
+  system("clear"); // Para Linux/macOS
+  #endif
   cout << "Nome:  " << personagem.nome << endl;
   cout << "Raca:  " << personagem.nomearRaca() << endl;
   cout << "Arquetipo: " << personagem.nomearArquetipo() << endl;
@@ -94,70 +97,60 @@ void displayFicha() {
     cout << "Pericia" << i+1 <<": " << personagem.NomePericia(personagem.pericias[i]) << " + " << personagem.ModPericia(personagem.pericias[i]) << endl;
   }
   cout << endl;
-  //cout << "Tecnicas: " << endl << personagem.tecnicas[0] << endl << personagem.tecnicas[1] << endl << personagem.tecnicas[2];
-  //cout << "Tecnicas Desp: " << endl << personagem.tecnicasdespertar[0] << endl << personagem.tecnicasdespertar[1] << endl;
+  cout << "Tecnicas: " << endl;
+  personagem.TecnicasArquetipos(personagem.arquetipo);
+  for (int i = 0; i < personagem.QuantidadeTecnicas; i++) {
+    cout << personagem.tecnicasNomes[i] << endl;
+  }
+  cout << endl;
+  cout << "Inventario: " << endl;
+  for (int i = 0; i < personagem.QuantidadeItens; i++) {
+    cout << personagem.inventario[i] << endl;
+  }
+
+  //cout << "Tecnicas Desp: " << endl << pers onagem.tecnicasdespertar[0] << endl << personagem.tecnicasdespertar[1] << endl;
   //cout << "Inventario: " << endl << personagem.inventario[0] << endl << personagem.inventario[1] << endl << personagem.inventario[2];
 }
 
 int main() {
-  int RepostaUser;
+  int RespostaUser;
+  ofstream outFile;
+
   criacaodeFicha();
-  if (fichacriada = false) {
-    criacaodeFicha();
-  } else if (fichacriada = true) {
-   // mostraficha();
-  } else {
-    cout << "ERRO!!!" << endl;
-  }
-
-  #ifdef _WIN32
-  system("cls"); // Para Windows
-  #else
-  system("clear"); // Para Linux/macOS
-  #endif
-
   displayFicha();
   cout << endl;
-  cout << "Oque quer fazer agora?";
-  cin >> RepostaUser; 
- /*
-  personagem.inventario = {"Batata assada", "Bazooka", "Mel"};
-  personagem.tecnicas = {1, 42, 13};
-  personagem.tecnicasdespertar = {"Socos flamejantes", "Ira do dragao"};
-*/ 
-  //-----------------------------------------------------
- /*cout << "Nome:  " << personagem.nome << endl;
-  cout << "Raca:  " << personagem.nomearRaca() << endl;
-  cout << "Arquétipo: " << personagem.nomearArquetipo() << endl;
-  cout << "Auria: " << personagem.nomearAuria() << endl;
-  cout << "Nivel: " << personagem.nivel << endl;
+  cout << "Oque quer fazer agora?" << endl;
+  cin >> RespostaUser; 
 
-  cout << endl;
+  while (RespostaUser != 0)
+  { 
+   switch (RespostaUser)
+  {
+  case 1: // Atualizar Status
+  personagem.attStatus();
+  displayFicha();
+    break;
+  case 2: // Incluir itens 
+  personagem.SubirNivel();
+  displayFicha();
+    break;
+  case 3: // Excluir itens
+  personagem.ExcluirItens();
+  displayFicha();
+    break;
+  case 4: // Subir nivel
+  personagem.SubirNivel();
+  displayFicha();
+    break;
+  case 5: // Adcionar Tecnicar Despertadas
+  
+    break;
+  default:
+    break;
+  }
+  cout << "Oque quer fazer agora?" << endl;
+  cin >> RespostaUser; 
+  }
+  
 
-  cout << "-------------------------- STATUS -------------------------" << endl;
-  cout << 
-  "FOR: " << personagem.FOR << "(" << personagem.statusMods(personagem.FOR) << ") || " << 
-  "DES: " << personagem.DES << "(" << personagem.statusMods(personagem.DES) << ") || " << 
-  "CON: " << personagem.CON << "(" << personagem.statusMods(personagem.CON) << ") || " << 
-  "INT: " << personagem.INT << "(" << personagem.statusMods(personagem.INT) << ") || " << 
-  "CAR: " << personagem.CAR << "(" << personagem.statusMods(personagem.CAR) << ") || " << 
-  "AUR: " << personagem.AUR << "(" << personagem.statusMods(personagem.AUR) << ")" << endl;
-  cout << endl;
-  cout << "PV MAX: " << personagem.PV << endl;
-  cout << "PV ATUAL: " << personagem.PVATUAL << endl;
-  cout << "AP: " << personagem.AP << endl;
-  cout << "CA: " << personagem.CA << endl;
-  cout << "Iniciativa: " << personagem.Iniciativa << endl;
-
-  cout << endl;
-
-  cout << "-------------------------- ATAQUES -------------------------" << endl;
-  cout << "Pericia 1: " << personagem.pericias[0] << endl;
-  cout << "Pericia 2: " << personagem.pericias[1] << endl;
-  cout << "Pericia 3: " << personagem.pericias[2] << endl;
-  cout << endl;
-  cout << "Tecnicas: " << endl << personagem.tecnicas[0] << endl << personagem.tecnicas[1] << endl << personagem.tecnicas[2];
-  cout << "Tecnicas Desp: " << endl << personagem.tecnicasdespertar[0] << endl << personagem.tecnicasdespertar[1] << endl;
-  cout << "Inventario: " << endl << personagem.inventario[0] << endl << personagem.inventario[1] << endl << personagem.inventario[2];
-*/ 
   };

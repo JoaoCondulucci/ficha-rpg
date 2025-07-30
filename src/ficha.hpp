@@ -41,10 +41,11 @@ struct ficha
   int Perícia4;
   int Perícia5; */
 
-  std::vector<std::string> inventario;
+  std::string inventario[50];
   int QuantidadeItens;
   std::vector<int> tecnicas;
-  std::vector<std::string> tecnicasNomes;
+  std::string tecnicasNomes[5];
+  int QuantidadeTecnicas;
   std::vector<std::string> tecnicasdespertar;
 
 
@@ -174,70 +175,150 @@ struct ficha
     }; 
   }
 
-  void TecnicasArquetipos() {
-    switch (arquetipo)
+  void TecnicasArquetipos(int IndicadorTecnicas) {
+    switch (IndicadorTecnicas)
     {
     case 1:
       if (nivel == 1) {
-        tecnicasNomes = {"Mestre de armas"};
+        tecnicasNomes[0] = {"Mestre de armas"};
+        QuantidadeTecnicas = 1;
       } else if (nivel == 3) {
-        tecnicasNomes = {"Mestre de armas", "Combo rapido"};
+        tecnicasNomes[1] = {"Combo rapido"};
+        QuantidadeTecnicas = 2;
       } else if (nivel == 5) {
-        tecnicasNomes = {"Mestre de armas", "Combo rapido", "Troca tatica"};
+        tecnicasNomes[2] = {"Troca tatica"};
+        QuantidadeTecnicas = 3;
       } else if (nivel == 7) {
-        tecnicasNomes = {"Mestre de armas", "Combo rapido", "Troca tatica", "Estilo adaptavel"};
+        tecnicasNomes[3] = {"Estilo adaptavel"};
+        QuantidadeTecnicas = 4;
       } else if (nivel == 10) {
-        tecnicasNomes = {"Mestre de armas", "Combo rapido", "Troca tatica", "Estilo adaptavel", ""};
+        tecnicasNomes[4] = {"a"};
+        QuantidadeTecnicas = 5;
       }
       break;
     case 2:
       if (nivel == 1) {
-        tecnicasNomes = {"Molde inicial"};
+        tecnicasNomes[0] = {"Molde inicial"};
+        QuantidadeTecnicas = 1;
       } else if (nivel == 3) {
-        tecnicasNomes = {"Molde inicial", "Armadura condensada"};
+        tecnicasNomes[1] = {"Armadura condensada"};
+        QuantidadeTecnicas = 2;
       } else if (nivel == 5) {
-        tecnicasNomes = {"Molde inicial", "Armadura condensada", "Construcao persistente"};
+        tecnicasNomes[2] = {"Construcao persistente"};
+        QuantidadeTecnicas = 3;
       } else if (nivel == 7) {
-        tecnicasNomes = {"Molde inicial", "Armadura condensada", "Construcao persistente", "Barreira reflexiva"};
+        tecnicasNomes[3] = {"Barreira reflexiva"};
+        QuantidadeTecnicas = 4;
       } else if (nivel == 10) {
-        tecnicasNomes = {"Molde inicial", "Armadura condensada", "Construcao persistente", "Barreira reflexiva", "Criacao suprema"};
+        tecnicasNomes[4] = {"Criacao suprema"};
+        QuantidadeTecnicas = 5;
       }      
       break;
     case 3:
       if (nivel == 1) {
-        tecnicasNomes = {"Descarga mistica"};
+        tecnicasNomes[0] = {"Descarga mistica"};
+        QuantidadeTecnicas = 1;
       } else if (nivel == 3) {
-        tecnicasNomes = {"Descarga mistica", "Amplificar tecnica"};
+        tecnicasNomes[1] = {"Amplificar tecnica"};
+        QuantidadeTecnicas = 2;
       } else if (nivel == 5) {
-        tecnicasNomes = {"Descarga mistica", "Amplificar tecnica", " Estouro de zona"};
+        tecnicasNomes[2] = {" Estouro de zona"};
+        QuantidadeTecnicas = 3;
       } else if (nivel == 7) {
-        tecnicasNomes = {"Descarga mistica", "Amplificar tecnica", " Estouro de zona", "Auria expandida"};
+        tecnicasNomes[3] = {"Auria expandida"};
+        QuantidadeTecnicas = 4;
       } else if (nivel == 10) {
-        tecnicasNomes = {"Descarga mistica", "Amplificar tecnica", "Estouro de zona", "Auria expandida", "Tempestade final"};
+        tecnicasNomes[4] = {"Tempestade final"};
+        QuantidadeTecnicas = 5;
       }
       break;
     case 4:
       if (nivel == 1) {
-        tecnicasNomes = {"Corpo Reforçado"};
+        tecnicasNomes[0] = {"Corpo Reforçado"};
+        QuantidadeTecnicas = 1;
       } else if (nivel == 3) {
-        tecnicasNomes = {"Corpo Reforçado", "Impacto potente"};
+        tecnicasNomes[1] = {"Impacto potente"};
+        QuantidadeTecnicas = 2;
       } else if (nivel == 5) {
-        tecnicasNomes = {"Corpo Reforçado", "Impacto potente", "Canalizar Dor"};
+        tecnicasNomes[2] = {"Canalizar Dor"};
+        QuantidadeTecnicas = 3;
       } else if (nivel == 7) {
-        tecnicasNomes = {"Corpo Reforçado", "Impacto potente", "Canalizar Dor", "Auria ativa"};
+        tecnicasNomes[3] = {"Auria ativa"};
+        QuantidadeTecnicas = 4;
       } else if (nivel == 10) {
-        tecnicasNomes = {"Corpo Reforçado", "Impacto potente", "Canalizar Dor", "Auria Ativa", "Explosão Interna"};
+        tecnicasNomes[4] = {"Explosão Interna"};
+        QuantidadeTecnicas = 5;
       }
       break;
 
     
     default:
-      tecnicasNomes = {"Não encontrado"};
       break;
     }
   }
-};
 
+  void InserirItens() {
+    int teste;
+    
+    while (teste != 0)
+    {
+      std::cout << "Qual item voce deseja adicionar?" << std::endl;
+      std::cin >> inventario[QuantidadeItens];
+      std::cout << "Deseja continuar?" << std::endl;
+      std::cin >> teste;
+      QuantidadeItens++;
+    }
+  }
+  void ExcluirItens() {
+    int ItemExcluido;
+    int i;
+      std::cout << "Qual item voce deseja excluir?" << std::endl;
+      std::cin >> ItemExcluido;
+      i = ItemExcluido;
+      if (i == QuantidadeItens ) {
+        inventario[i-1] = " ";
+        std::cout << "Item excluido" << std::endl;
+        QuantidadeItens--;
+      } else if (i < QuantidadeItens) {
+      for (i = ItemExcluido; i - 1 < QuantidadeItens; i++) {
+        inventario[i-1] = inventario[i];
+        i++;
+        std::cout << "Item excluido" << std::endl;
+        QuantidadeItens--;
+      }
+    } else {
+      std::cout << "ERRO: ITEM NAO ENCONTRADO" << std::endl;
+    }
+    }
+
+  void attStatus() {
+    char resposta;
+    std::cout << "Qual status você deseja atualizar?" << std::endl;
+    std::cin >> resposta;
+
+    if (resposta == 'F') {
+      std::cout << "Muito bem, atualize a forca - Seu valor atual e" << FOR << std::endl;
+      std::cin >> FOR;
+    } else if (resposta == 'D') {
+      std::cout << "Muito bem, atualize a destreza - Seu valor atual e" << DES << std::endl;
+      std::cin >> DES; 
+    } else if (resposta == 'C') {
+      std::cout << "Muito bem, atualize a constituicao - Seu valor atual e" << CON << std::endl;
+      std::cin >> CON;
+    } else if (resposta == 'I') {
+      std::cout << "Muito bem, atualize a inteligencia - Seu valor atual e" << INT << std::endl;
+      std::cin >> INT;
+    } else if (resposta == 'S') {
+      std::cout << "Muito bem, atualize o carisma - Seu valor atual e" << CAR << std::endl;
+      std::cin >> CAR;
+    } else if (resposta == 'A') {
+      std::cout << "Muito bem, atualize a auria - Seu valor atual e" << AUR << std::endl;
+      std::cin >> AUR;
+    }
+    
+    
+  }
+};
 
 
 
