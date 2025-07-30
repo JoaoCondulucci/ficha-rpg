@@ -145,6 +145,11 @@ int main() {
   case 5: // Adcionar Tecnicar Despertadas
   
     break;
+  case 6: // Cura
+  
+    break;
+  case 7:
+    beak: // Dano
   default:
     break;
   }
